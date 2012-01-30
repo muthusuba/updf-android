@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="status">Use any file manager/browser and open with this app to convert.</string>
+    <string name="app_name">uPDFConv</string>
+    <string name="choose">Choose File</string>
+</resources>
