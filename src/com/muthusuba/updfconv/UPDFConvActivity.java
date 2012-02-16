@@ -115,13 +115,13 @@ public class UPDFConvActivity extends Activity {
         	if(intent.getType().contains("pdf"))
         		finish();
         }
-        if(filename.length() == 0 && intent != null && intent.getData() != null) {
+        if(filename.length() == 0 && intent != null && intent.getExtras() != null) {
         	String name = "";
         	try {
-        		name = getRealPathFromURI(intent.getData());
+        		name = getRealPathFromURI((Uri)intent.getExtras().getParcelable(Intent.EXTRA_STREAM));
         	}
         	catch(Exception e) {
-        		name = intent.getData().getPath();
+        		name = ((Uri)intent.getExtras().getParcelable(Intent.EXTRA_STREAM)).getPath();
         	}
         	File file = new File(name);
         	if(file.isDirectory())
@@ -311,7 +311,7 @@ public class UPDFConvActivity extends Activity {
 		connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded"); 
 		connection.setRequestProperty("charset", "utf-8");
 		connection.setRequestProperty("Content-Length", String.valueOf(params.getBytes().length));
-		connection.setUseCaches(false);
+		connection.setUseCaches (false);
 		connection.connect();
 		DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
 		wr.writeBytes(params);
